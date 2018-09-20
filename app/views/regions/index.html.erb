@@ -1,0 +1,59 @@
+<div class = "container">
+
+  <div class="row">
+    <h2>Regions Summary:</h2>
+  </div>
+
+  <div class ="row">
+    <br>
+    <%= link_to "Back to Profile", agent_path(@agent) %><br>
+    <br>
+  </div>
+
+  <div class ="row">
+    <h4>All Regions</h4>
+    <table class="table">
+      <tr>
+        <th>Total Leads</th>
+        <th>Total Go</th>
+        <th>Total No Go</th>
+        <th>Total Converted</th>
+        <th>Total Booked Loans</th>
+      </tr>
+      <tr>
+          <td><%= @total_leads %></td>
+          <td><%= @total_go %></td>
+          <td><%= @total_nogo %></td>
+          <td><%= @total_converted %></td>
+          <td><%= @total_booked %></td>
+      </tr>
+    </table>
+    <br><br>
+  </div>
+
+  <div class ="row">
+    <h4>Per Region</h4>
+    <table class="table">
+      <tr>
+        <th>Region ID</th>
+        <th>Region Name</th>
+        <th>Total Leads</th>
+        <th>Total Go</th>
+        <th>Total No Go</th>
+        <th>Total Converted</th>
+        <th>Total Booked Loans</th>
+      </tr>
+      <% @regions.each do |region| %>
+      <tr>
+          <td><%= region.id %></td>
+          <td><%= region.name %></td>
+          <td><%= region.leads.count %></td>
+          <td><%= region.leads.where(status: "Go").count %></td>
+          <td><%= region.leads.where(status: "No Go").count %></td>
+          <td><%= region.leads.where(status: "Converted").count %></td>
+          <td><%= region.leads.sum(:booked_loans) %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

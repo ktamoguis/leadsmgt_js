@@ -1,0 +1,18 @@
+<div class = "container">
+  <div class = "row">
+    <h2>Welcome to Leads Management</h2>
+  </div>
+
+  <div class = "row">
+    <%= link_to "Sign Up", signup_path %>&nbsp;&nbsp; Or &nbsp;&nbsp;<%= link_to "Sign In", signin_path %>&nbsp;&nbsp; Or &nbsp;&nbsp;<%= link_to('Sign in Using Facebook', '/auth/facebook') %>
+  </div>
+
+  <div class = "row">
+    <br><br>
+    <% if flash[:notice] %>
+      <div class="alert alert-danger" role="alert"><%= flash[:notice] %></div>
+      <!--<div class="notice"><%= flash[:notice] %></div>-->
+    <% end %>
+  </div>
+
+</div>

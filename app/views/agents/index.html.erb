@@ -1,0 +1,58 @@
+<div class = "container">
+  <div class = "row">
+    <h2>Agents Index</h2>
+  </div>
+
+  <div class = "row">
+    <br>
+    <%= link_to "Back to Profile", agent_path(session[:agent_id]) %><br>
+    <br>
+  </div>
+
+  <div class ="row">
+    <h4>All Agents</h4>
+    <table class="table">
+      <tr>
+        <th>Total Leads</th>
+        <th>Total Go</th>
+        <th>Total No Go</th>
+        <th>Total Converted</th>
+        <th>Total Booked Loans</th>
+      </tr>
+      <tr>
+          <td><%= @total_leads %></td>
+          <td><%= @total_go %></td>
+          <td><%= @total_nogo %></td>
+          <td><%= @total_converted %></td>
+          <td><%= @total_booked %></td>
+      </tr>
+    </table>
+    <br><br>
+  </div>
+
+  <div class = "row">
+    <h4>Per Agent</h4>
+    <table class="table">
+      <tr>
+        <th>ID no</th>
+        <th>Name</th>
+        <th>Total Leads</th>
+        <th>Total Go</th>
+        <th>Total No Go</th>
+        <th>Total Converted</th>
+        <th>Booked Amount</th>
+      </tr>
+      <% @agents.each do |agent| %>
+      <tr>
+          <td><%= agent.id %></td>
+          <td><%= agent.name %></td>
+          <td><%= agent.leads.count %></td>
+          <td><%= agent.leads.where(status: "Go").count %></td>
+          <td><%= agent.leads.where(status: "No Go").count %></td>
+          <td><%= agent.leads.where(status: "Converted").count %></td>
+          <td><%= agent.leads.sum(:booked_loans) %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

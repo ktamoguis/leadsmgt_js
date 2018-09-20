@@ -1,0 +1,15 @@
+<div class = "container">
+  <div class = "row">
+    <h2>Edit Agent Details</h2>
+  </div>
+
+  <div class = "row">
+    <br>
+    <%= render 'form' %>
+  </div>
+
+  <div class = "row">
+    <br><br>
+    <%= render partial: "error", locals: {variable: @agent} %>
+  </div>
+</div>

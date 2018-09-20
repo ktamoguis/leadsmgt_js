@@ -1,0 +1,15 @@
+<% if variable.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <h4>
+      <%= pluralize(variable.errors.count, "error") %>
+      prohibited this article from being saved:
+    </h4>
+
+    <ul>
+    <% variable.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+    <p> Please correct the concerned fields. </p>
+  </div>
+<% end %>
