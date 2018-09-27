@@ -17,13 +17,31 @@
         <%= submit_tag("Edit Lead") %>
       <% end %>
     </p>
-
     <p><%= form_tag lead_path(@lead), method: "delete" do %>
         <%= submit_tag("Delete Lead") %>
       <% end %>
     </p>
-
     <%= link_to "Back to Profile", agent_path(@agent) %>
   </div>
 
+  <div class="row">
+    <a href="#" class="js-index">All leads</a>
+  </div>
+
 </div>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-index").on("click", function() {
+    //var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    //$.get("/products/" + nextId + ".json", function(data) {
+    //  $(".productName").text(data["name"]);
+    //  $(".productPrice").text(data["price"]);
+    //  $(".productDescription").text(data["description"]);
+    //  $(".productInventory").text(data["inventory"]);
+      // re-set the id to current on the link
+    //  $(".js-next").attr("data-id", data["id"]);
+    //});
+  });
+});
+</script>
