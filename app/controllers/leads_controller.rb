@@ -45,6 +45,8 @@ class LeadsController < ApplicationController
       @agent = @lead.agent
     end
 
+
+
   end
 
   def destroy
@@ -63,6 +65,10 @@ class LeadsController < ApplicationController
       @leads = @agent.leads
     else
       @leads = Lead.by_agent(@agent.id, params[:status])
+    end
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @leads}
     end
   end
 
