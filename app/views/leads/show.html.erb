@@ -32,18 +32,19 @@
 
 </div>
 
-<script type="text/javascript" charset="utf-8">
-$(function () {
-  $(".js-index").on("click", function() {
-    $.get("/leads.json", function(data) {
-      var leadslist = "";
-      var leads = data;
-      //debugger;
-      leads.forEach(function(lead){
-        leadslist += lead["name"] + ' ' + lead["status"] + ' ' + lead["booked_loans"] + '</br>'
-        $("#leads").html(leadslist);
-      });
-    });
-  });
-});
-</script>
+<!--<script type="text/javascript" charset="utf-8">
+//$(function () {
+//  $(".js-index").on("click", function() {
+//    $.get("/leads.json", function(data) {
+//      var leadslist = "";
+//      var leads = data;
+//      leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
+//      //debugger;
+//      leads.forEach(function(lead){
+//        leadslist += lead["name"] + ' ' + lead["status"] + ' ' + lead["booked_loans"] + '</br>'
+//        $("#leads").html(leadslist);
+//      });
+//    });
+//  });
+//});
+</script> -->

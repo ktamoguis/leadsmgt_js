@@ -9,21 +9,18 @@ function attachListeners() {
   //$('#previous').on('click', () => showPreviousGames());
   //$('#save').on('click', ()=> saveGame());
   //$('#clear').on('click', ()=> clearGame());
+  $(".js-index").on("click", ()=> leadsIndex());
 }
 
 function leadsIndex () {
-  //debugger;
-  $('#leads').empty();
-  $.get('/leads', function(data){
-    debugger;
-    var leads = data["data"]
-    var leadsList = "";
+  $.get("/leads.json", function(data) {
+    var leadslist = "";
+    var leads = data;
+    leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
+    //debugger;
     leads.forEach(function(lead){
-      //gamesList += '<button class="prevGames" data-id="' + game["id"]+ '">' + game["id"] + '</button></br>';
-      leadsList += '<button class="prevgames" id="lead["id"] ">' + lead["id"] + '</button></br>';
-      $("#leads").html(leadsList);
-      //$('.prevgames').on('click', function(){showGame(this)});
-      //debugger;
+      leadslist += lead["name"] + ' ' + lead["status"] + ' ' + lead["booked_loans"] + '</br>'
+      $("#leads").html(leadslist);
     });
-	});
-}
+  });
+};
