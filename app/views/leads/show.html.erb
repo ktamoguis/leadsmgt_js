@@ -35,14 +35,15 @@
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-index").on("click", function() {
-    var leadslist = "";
     $.get("/leads.json", function(data) {
+      var leadslist = "";
+      var leads = data;
       //debugger;
-      leadslist += data[0]["name"]
-      $("#leads").html(leadslist)
-    //  $(".js-next").attr("data-id", data["id"]);
-    //});
+      leads.forEach(function(lead){
+        leadslist += lead["name"] + ' ' + lead["status"] + ' ' + lead["booked_loans"] + '</br>'
+        $("#leads").html(leadslist);
+      });
+    });
   });
-});
 });
 </script>
