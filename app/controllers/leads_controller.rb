@@ -44,6 +44,12 @@ class LeadsController < ApplicationController
       @lead = Lead.find_by(id: params[:id])
       @agent = @lead.agent
     end
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @lead}
+    end
+
+
 
 
 

@@ -9,6 +9,7 @@ function attachListeners() {
   //$('#previous').on('click', () => showPreviousGames());
   //$('#save').on('click', ()=> saveGame());
   //$('#clear').on('click', ()=> clearGame());
+  $(".js-next").on("click", ()=> nextLead());
   $(".js-index").on("click", ()=> leadsIndex());
 }
 
@@ -16,7 +17,7 @@ function leadsIndex () {
   $.get("/leads.json", function(data) {
     var leadslist = "";
     var leads = data;
-    leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
+    //leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
     //debugger;
     leads.forEach(function(lead){
       leadslist += lead["name"] + ' ' + lead["status"] + ' ' + lead["booked_loans"] + '</br>'
@@ -24,3 +25,17 @@ function leadsIndex () {
     });
   });
 };
+
+function nextLead(){
+ var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+ var leadName = "";
+ //debugger;
+ $.get("/leads/" + nextId + ".json", function(data) {
+   //debugger;
+   leadName += 'Lead Name: ' + data["name"];
+   leadStatus += 'Status: ' + data["status"];
+   $("#leadName").html(leadName)
+   //$("#leadStatus").html(leadStatus)
+   $(".js-next").attr("data-id", data["id"]);
+ });
+}

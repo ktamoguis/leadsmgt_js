@@ -1,14 +1,17 @@
 <div class = "container">
+
   <div class ="row">
     <h2>Your Lead:</h2>
   </div>
 
+  <a href="#" class="js-next" data-id="<%=@lead.id%>">Next Lead</a>
+
   <div class ="row">
-    <h4><strong>Lead Name: </strong><%= @lead.name %></h4>
-    <h4><strong>Industry: </strong><%= @lead.industry.name %></h4>
-    <h4><strong>Status: </strong><%= @lead.status %></h4>
+    <h4 id="leadName"><strong>Lead Name: </strong><%= @lead.name %></h4>
+    <h4 id="industryName"><strong>Industry: </strong><%= @lead.industry.name %></h4>
+    <h4 id="leadStatus"><strong>Status: </strong><%= @lead.status %></h4>
     <% if @lead.status == "Converted" %>
-      <h4><strong>Booked amount($): </strong><%= @lead.booked_loans %></h4>
+      <h4 id="bookedAmount"><strong>Booked amount($): </strong><%= @lead.booked_loans %></h4>
     <% end %>
   </div>
 
@@ -31,20 +34,3 @@
   </div>
 
 </div>
-
-<!--<script type="text/javascript" charset="utf-8">
-//$(function () {
-//  $(".js-index").on("click", function() {
-//    $.get("/leads.json", function(data) {
-//      var leadslist = "";
-//      var leads = data;
-//      leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
-//      //debugger;
-//      leads.forEach(function(lead){
-//        leadslist += lead["name"] + ' ' + lead["status"] + ' ' + lead["booked_loans"] + '</br>'
-//        $("#leads").html(leadslist);
-//      });
-//    });
-//  });
-//});
-</script> -->
