@@ -38,6 +38,10 @@ class AgentsController < ApplicationController
     @total_nogo = @agent.leads.where(status: "No Go").count
     @total_converted = @agent.leads.where(status: "Converted").count
     @total_booked = @agent.leads.sum(:booked_loans)
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @agent}
+    end
   end
 
   def index

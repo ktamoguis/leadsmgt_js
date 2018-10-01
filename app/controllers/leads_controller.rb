@@ -46,7 +46,7 @@ class LeadsController < ApplicationController
     end
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @lead}
+      format.json { render json: @lead, status: 200}
     end
 
 
