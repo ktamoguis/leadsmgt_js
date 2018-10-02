@@ -44,15 +44,17 @@ class LeadsController < ApplicationController
       @lead = Lead.find_by(id: params[:id])
       @agent = @lead.agent
     end
+    @leads = current_user.leads
+    @lead_ids = []
+    binding.pry
+    @leads.each do |lead|
+       @lead_ids << lead[:id]
+    end
+    binding.pry
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @lead, status: 200}
     end
-
-
-
-
-
   end
 
   def destroy

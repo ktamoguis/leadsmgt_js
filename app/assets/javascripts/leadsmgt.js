@@ -1,3 +1,5 @@
+var leadIds = [];
+
 $(document).ready(attachListeners);
 
 function attachListeners() {
@@ -18,7 +20,7 @@ function leadsIndex () {
     var leadslist = "";
     var leads = data;
     //leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
-    //debugger;
+    debugger;
     leads.forEach(function(lead){
       leadslist += lead["name"] + ' ' + lead["status"] + ' ' + lead["booked_loans"] + '</br>'
       $("#leads").html(leadslist);
@@ -27,11 +29,11 @@ function leadsIndex () {
 };
 
 function nextLead(){
- var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+ var nextId = parseInt($(".js-next").attr("data-id"));
  var leadName = "";
  //debugger;
  $.get("/leads/" + nextId + ".json", function(data) {
-   //debugger;
+   debugger;
    leadName += 'Lead Name: ' + data["name"];
    leadStatus += 'Status: ' + data["status"];
    $("#leadName").html(leadName)
