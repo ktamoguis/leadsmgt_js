@@ -46,11 +46,11 @@ class LeadsController < ApplicationController
     end
     @leads = current_user.leads
     @lead_ids = []
-    binding.pry
+    #binding.pry
     @leads.each do |lead|
        @lead_ids << lead[:id]
     end
-    binding.pry
+    #binding.pry
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @lead, status: 200}

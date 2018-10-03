@@ -29,15 +29,23 @@ function leadsIndex () {
 };
 
 function nextLead(){
- var nextId = parseInt($(".js-next").attr("data-id"));
- var leadName = "";
- //debugger;
- $.get("/leads/" + nextId + ".json", function(data) {
-   debugger;
-   leadName += 'Lead Name: ' + data["name"];
-   leadStatus += 'Status: ' + data["status"];
-   $("#leadName").html(leadName)
-   //$("#leadStatus").html(leadStatus)
-   $(".js-next").attr("data-id", data["id"]);
- });
+  //var leadIds = []
+  //debugger;
+  //leadIds = parseInt($(".js-next").attr("data-id"));
+  var leadIds = $(".js-next").attr("data-id")
+  var objleadIds = JSON.parse(leadIds)
+  debugger;
+  //leadIds = leadIds.replace(/[\])}[{(]/g,'');
+  //debugger;
+  //var nextId = parseInt($(".js-next").attr("data-id"));
+  var leadName = "";
+  //debugger;
+  $.get("/leads/" + ".json", function(data) {
+    debugger;
+    leadName += 'Lead Name: ' + data["name"];
+    leadStatus += 'Status: ' + data["status"];
+    $("#leadName").html(leadName)
+    //$("#leadStatus").html(leadStatus)
+    $(".js-next").attr("data-id", data["id"]);
+  });
 }
