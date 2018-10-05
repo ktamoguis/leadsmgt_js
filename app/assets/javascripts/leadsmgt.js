@@ -34,14 +34,18 @@ function nextLead(){
   //leadIds = parseInt($(".js-next").attr("data-id"));
   var leadIds = $(".js-next").attr("lead-ids")
   var leadId = $(".js-next").attr("lead-id")
+  var objleadId = JSON.parse(leadId)
   var objleadIds = JSON.parse(leadIds)
+  var nextIndex = objleadIds.indexOf(objleadId) + 1
+  var nextleadId = objleadIds[nextIndex]
+  //var nextlead = objleadIds[nextIndex]
   debugger;
   //leadIds = leadIds.replace(/[\])}[{(]/g,'');
   //debugger;
   //var nextId = parseInt($(".js-next").attr("data-id"));
   var leadName = "";
   //debugger;
-  $.get("/leads/" + ".json", function(data) {
+  $.get("/leads/" + nextleadId +".json", function(data) {
     debugger;
     leadName += 'Lead Name: ' + data["name"];
     leadStatus += 'Status: ' + data["status"];
