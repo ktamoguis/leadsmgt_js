@@ -4,8 +4,8 @@
     <h2>Your Lead:</h2>
   </div>
 
-  <a href="#" class="js-next" data-id="<%=@lead_ids%>">Next Lead</a>
-  
+  <a href="#" class="js-next" lead-id="<%=@lead.id%>" lead-ids="<%=@lead_ids%>">Next Lead</a>
+
 
   <div class ="row">
     <h4 id="leadName"><strong>Lead Name: </strong><%= @lead.name %></h4>

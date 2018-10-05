@@ -32,7 +32,8 @@ function nextLead(){
   //var leadIds = []
   //debugger;
   //leadIds = parseInt($(".js-next").attr("data-id"));
-  var leadIds = $(".js-next").attr("data-id")
+  var leadIds = $(".js-next").attr("lead-ids")
+  var leadId = $(".js-next").attr("lead-id")
   var objleadIds = JSON.parse(leadIds)
   debugger;
   //leadIds = leadIds.replace(/[\])}[{(]/g,'');
