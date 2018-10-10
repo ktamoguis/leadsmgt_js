@@ -11,11 +11,12 @@ function attachListeners() {
   //$('#previous').on('click', () => showPreviousGames());
   //$('#save').on('click', ()=> saveGame());
   //$('#clear').on('click', ()=> clearGame());
-  $(".js-next").on("click", ()=> nextLead());
-  $(".js-index").on("click", ()=> leadsIndex());
+  $(".js-next").on("click", (e)=> nextLead(e));
+  $(".js-index").on("click", (e)=> leadsIndex(e));
 }
 
-function leadsIndex () {
+function leadsIndex (e) {
+  e.preventDefault();
   $.get("/leads.json", function(data) {
     var leadslist = "";
     var leads = data;
@@ -29,6 +30,11 @@ function leadsIndex () {
 };
 
 function nextLead(){
+
+}
+
+
+function nextLead2(){
   //var leadIds = []
   //debugger;
   //leadIds = parseInt($(".js-next").attr("data-id"));
@@ -38,11 +44,6 @@ function nextLead(){
   var objleadIds = JSON.parse(leadIds)
   var nextIndex = objleadIds.indexOf(objleadId) + 1
   var nextleadId = objleadIds[nextIndex]
-  //var nextlead = objleadIds[nextIndex]
-  debugger;
-  //leadIds = leadIds.replace(/[\])}[{(]/g,'');
-  //debugger;
-  //var nextId = parseInt($(".js-next").attr("data-id"));
   var leadName = "";
   //debugger;
   $.get("/leads/" + nextleadId +".json", function(data) {
@@ -50,7 +51,7 @@ function nextLead(){
     leadName += 'Lead Name: ' + data["name"];
     leadStatus += 'Status: ' + data["status"];
     $("#leadName").html(leadName)
-    //$("#leadStatus").html(leadStatus)
+    $("#leadStatus").html(leadStatus)
     $(".js-next").attr("data-id", data["id"]);
   });
 }
