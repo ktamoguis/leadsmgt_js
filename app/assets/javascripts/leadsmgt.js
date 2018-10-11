@@ -18,6 +18,33 @@ function attachListeners() {
 
 function leadsIndex (e) {
   e.preventDefault();
+  $.get("/leads.json", function(data) {
+    $(".leads_index").html('');
+    var leadslist = "";
+    var leads = data;
+    //leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
+    //debugger;
+    leads.forEach(function(lead){
+
+      debugger;
+      let newlead = new Lead(lead);
+      leadslist += lead["name"] + ' ' + lead["status"] + ' ' + lead["booked_loans"] + '</br>'
+      $("#leads").html(leadslist);
+    });
+  });
+};
+
+function Lead(lead){
+  this.id = lead.id;
+  this.name = lead.name;
+  this.status = lead.status;
+  this.booked_loans = lead.booked_loans;
+  this.agent = lead.agent;
+  this.industry = lead.industry;
+}
+
+function leadsIndex_orig (e) {
+  e.preventDefault();
   console.log("hello there");
   debugger;
   $.get("/leads.json", function(data) {
