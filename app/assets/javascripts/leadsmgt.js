@@ -12,11 +12,14 @@ function attachListeners() {
   //$('#save').on('click', ()=> saveGame());
   //$('#clear').on('click', ()=> clearGame());
   $(".js-next").on("click", (e)=> nextLead(e));
-  $(".js-index").on("click", (e)=> leadsIndex(e));
+  $(".leads_index").on("click", (e)=> leadsIndex(e));
+  //$(".js-index").on("click", (e)=> leadsIndex(e));
 }
 
 function leadsIndex (e) {
   e.preventDefault();
+  console.log("hello there");
+  debugger;
   $.get("/leads.json", function(data) {
     var leadslist = "";
     var leads = data;
