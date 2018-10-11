@@ -30,7 +30,9 @@ function leadsIndex (e) {
 };
 
 function nextLead(){
-
+  debugger;
+  let id = $(this).attr()
+  fetch(`leads/${id}/next`)
 }
 
 

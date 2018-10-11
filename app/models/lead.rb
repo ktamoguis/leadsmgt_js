@@ -6,6 +6,10 @@ class Lead < ApplicationRecord
   validates :name, presence: true
   validates :booked_loans, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
+  def next
+    self.where("id > ?",id).first
+  end
+
   def self.by_agent(agent_id, status)
     self.where("status = ?", status).where("agent_id = ?", agent_id)
   end

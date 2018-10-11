@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/signout' => 'sessions#destroy'
   get '/signup' => 'agents#new'
   get '/auth/facebook/callback' => 'sessions#create_with_facebook'
+  get '/leads/:id/next', to: 'leads#next'
 
   resources :agents, only: [:show] do
     resources :leads, only: [:new, :edit, :show, :index]

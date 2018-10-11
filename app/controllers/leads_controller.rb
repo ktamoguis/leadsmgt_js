@@ -57,6 +57,11 @@ class LeadsController < ApplicationController
     end
   end
 
+  def next
+    @next_lead = @lead.next
+    render json: @next_lead
+  end
+
   def destroy
     #binding.pry
     @lead = Lead.find(params[:id])
