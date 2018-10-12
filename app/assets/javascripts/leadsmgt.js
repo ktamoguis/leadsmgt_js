@@ -28,8 +28,8 @@ function leadsIndex (e) {
 
       debugger;
       let newlead = new Lead(lead);
-      leadslist += lead["name"] + ' ' + lead["status"] + ' ' + lead["booked_loans"] + '</br>'
-      $("#leads").html(leadslist);
+      let leadsHtml = newlead.formatIndex();
+      $("#leads").append(leadsHtml);
     });
   });
 };
@@ -41,6 +41,13 @@ function Lead(lead){
   this.booked_loans = lead.booked_loans;
   this.agent = lead.agent;
   this.industry = lead.industry;
+}
+
+Lead.prototype.formatIndex = function(){
+  let postHtml = `
+    <h1>${this.name}</h1>
+  `
+  return postHtml
 }
 
 function leadsIndex_orig (e) {
