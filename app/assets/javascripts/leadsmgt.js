@@ -18,6 +18,7 @@ function attachListeners() {
 
 function leadsIndex (e) {
   e.preventDefault();
+  history.pushState(null,null,"leads");
   $.get("/leads.json", function(data) {
     $(".leads_index").html('');
     var leadslist = "";
@@ -29,7 +30,8 @@ function leadsIndex (e) {
       debugger;
       let newlead = new Lead(lead);
       let leadsHtml = newlead.formatIndex();
-      $("#leads").append(leadsHtml);
+      $(".js_leads_index").append(leadsHtml);
+      //$("#leads").append(leadsHtml);
     });
   });
 };
