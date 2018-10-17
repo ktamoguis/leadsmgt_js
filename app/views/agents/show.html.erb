@@ -25,7 +25,7 @@
   </div>
 
   <div class = "row">
-    <table class="table">
+    <table id = "lead_table" class="table">
       <tr>
         <th>Total Leads</th>
         <th>Total Go</th>
@@ -43,6 +43,12 @@
     </table>
   </div>
 
+  <div class = "js_leads_index">
+    <table id="js_leads_index_table" class="table">
+    </table>
+
+  </div>
+
   <div class = "row">
     <p><%= form_tag edit_agent_path(@agent), method: "get" do %>
         <%= submit_tag("Edit Agent") %>
@@ -54,8 +60,6 @@
     </p>
   </div>
 
-  <div class = "js_leads_index">
-  </div>
 
   <div class = "row">
     <% if flash[:notice] %>

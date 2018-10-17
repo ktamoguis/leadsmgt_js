@@ -20,17 +20,29 @@ function leadsIndex (e) {
   e.preventDefault();
   history.pushState(null,null,"leads");
   $.get("/leads.json", function(data) {
-    $(".leads_index").html('');
+    $(".js_leads_index").html('');
+    $("#lead_table").html('');
     var leadslist = "";
     var leads = data;
     //leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
-    //debugger;
+    debugger;
+
+    let tableHtml = `
+      <th>Lead Name</th>
+    `
+
+    $("#lead_table").append(tableHtml)
+
     leads.forEach(function(lead){
 
-      debugger;
+      //debugger;
+
       let newlead = new Lead(lead);
       let leadsHtml = newlead.formatIndex();
-      $(".js_leads_index").append(leadsHtml);
+
+      $("#lead_table").append(leadsHtml);
+
+      //$(".js_leads_index").append(leadsHtml);
       //$("#leads").append(leadsHtml);
     });
   });
@@ -47,7 +59,10 @@ function Lead(lead){
 
 Lead.prototype.formatIndex = function(){
   let postHtml = `
-    <h1>${this.name}</h1>
+    <tr>
+      <td>${this.name}</td>
+    </tr>
+
   `
   return postHtml
 }
