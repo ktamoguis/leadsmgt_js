@@ -29,13 +29,16 @@ function leadsIndex (e) {
 
     let tableHtml = `
       <th>Lead Name</th>
+      <th>Lead Status</th>
+      <th>Booked Loans</th>
+      <th>Industry</th>
     `
 
     $("#lead_table").append(tableHtml)
 
     leads.forEach(function(lead){
 
-      //debugger;
+      debugger;
 
       let newlead = new Lead(lead);
       let leadsHtml = newlead.formatIndex();
@@ -61,8 +64,10 @@ Lead.prototype.formatIndex = function(){
   let postHtml = `
     <tr>
       <td>${this.name}</td>
+      <td>${this.status}</td>
+      <td>${this.booked_loans}</td>
+      <td>${this.industry.name}</td>
     </tr>
-
   `
   return postHtml
 }
