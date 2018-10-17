@@ -13,8 +13,11 @@ function attachListeners() {
   //$('#clear').on('click', ()=> clearGame());
   $(".js-next").on("click", (e)=> nextLead(e));
   $(".leads_index").on("click", (e)=> leadsIndex(e));
+  $(document).on("click", ".show_link", (e)=>showLead(e));
+  //$(".show_link").on("click", (e)=> showLead(e));
   //$(".js-index").on("click", (e)=> leadsIndex(e));
 }
+
 
 function leadsIndex (e) {
   e.preventDefault();
@@ -25,7 +28,7 @@ function leadsIndex (e) {
     var leadslist = "";
     var leads = data;
     //leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
-    debugger;
+    //debugger;
 
     let tableHtml = `
       <th>Lead Name</th>
@@ -37,8 +40,6 @@ function leadsIndex (e) {
     $("#lead_table").append(tableHtml)
 
     leads.forEach(function(lead){
-
-      debugger;
 
       let newlead = new Lead(lead);
       let leadsHtml = newlead.formatIndex();
@@ -60,10 +61,19 @@ function Lead(lead){
   this.industry = lead.industry;
 }
 
+function showLead (e) {
+  debugger;
+  e.preventDefault();
+  debugger;
+  let leadid = $(".show_link").attr("data-id")
+  debugger;
+
+}
+
 Lead.prototype.formatIndex = function(){
   let postHtml = `
     <tr>
-      <td><a href="/agents/${this.agent.id}/leads/${this.id}">${this.name}</a></td>
+      <td><a href="/agents/${this.agent.id}/leads/${this.id}" data-id="${this.id}" class="show_link">${this.name}</a></td>
       <td>${this.status}</td>
       <td>${this.booked_loans}</td>
       <td>${this.industry.name}</td>
@@ -71,6 +81,11 @@ Lead.prototype.formatIndex = function(){
   `
   return postHtml
 }
+
+
+
+//<td><a href="/agents/${this.agent.id}/leads/${this.id}" class="show_lead">${this.name}</a></td>
+//<td><a href="/leads/${this.id}" class="show_lead">${this.name}</a></td>
 
 function leadsIndex_orig (e) {
   e.preventDefault();
