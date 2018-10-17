@@ -63,7 +63,7 @@ function Lead(lead){
 Lead.prototype.formatIndex = function(){
   let postHtml = `
     <tr>
-      <td>${this.name}</td>
+      <td><a href="/agents/${this.agent.id}/leads/${this.id}">${this.name}</a></td>
       <td>${this.status}</td>
       <td>${this.booked_loans}</td>
       <td>${this.industry.name}</td>
