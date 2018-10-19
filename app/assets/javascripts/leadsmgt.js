@@ -19,6 +19,21 @@ function attachListeners() {
     //debugger;
     var lead = $(this).attr('data-id');
     debugger;
+    $.get("/leads/" + lead + ".json", function(lead) {
+      //debugger;
+      //var lead = data;
+      //console.log(data);
+      debugger;
+      $(".js_leads_index").html('');
+      $("#lead_table").html('');
+      let newlead = new Lead(lead);
+      let leadsHtml = newlead.formatShow();
+      debugger;
+      $(".js_leads_index").append(leadsHtml);
+      //var leadslist = "";
+      //var leads = data;
+      //leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
+    });
   });
   //$(".show_link").on("click", (e)=> showLead(e));
   //$(".js-index").on("click", (e)=> leadsIndex(e));
@@ -69,18 +84,20 @@ function Lead(lead){
 }
 
 function showLead (e) {
-  //debugger;
   e.preventDefault();
-  //debugger;
   var lead = $(this).attr('data-id');
+  //var leadid = parseInt($(".show_link").attr("data-id"));
   debugger;
-  var leadid = parseInt($(".show_link").attr("data-id"));
-  debugger;
-  $.get("/leads/" + leadid + ".json", function(data) {
+  $.get("/leads/" + lead + ".json", function(lead) {
     //debugger;
-    var lead = data;
-    console.log(data);
+    //var lead = data;
+    //console.log(lead);
+    $(".js_leads_index").html('');
+    $("#lead_table").html('');
+    let newlead = new Lead(lead);
+    let leadsHtml = newlead.formatShow();
     debugger;
+    $(".js_leads_index").append(leadsHtml);
     //var leadslist = "";
     //var leads = data;
     //leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
@@ -97,6 +114,17 @@ Lead.prototype.formatIndex = function(){
       <td>${this.booked_loans}</td>
       <td>${this.industry.name}</td>
     </tr>
+  `
+  return postHtml
+}
+
+Lead.prototype.formatShow = function(){
+  let postHtml = `
+    <h3>${this.name}</h3>
+    <h4>${this.status}</h4>
+    <h4>${this.booked_loans}</h4>
+    <h4>${this.industry.name}</h4>
+    <button class="next_lead">Next<button>
   `
   return postHtml
 }
