@@ -37,13 +37,19 @@ function attachListeners() {
   });
 
   $(document).on("click", ".next_lead", function(e){
-    debugger;
+    //debugger;
     var lead = $(this).attr('data-id');
-    debugger;
+    //debugger;
 
     $.get("/leads/" + lead + "/next", function(lead){
       console.log(lead)
-      debugger;
+      //debugger;
+      $(".js_leads_index").html('');
+      $("#lead_table").html('');
+      let newlead = new Lead(lead);
+      let leadsHtml = newlead.formatShow();
+      //debugger;
+      $(".js_leads_index").append(leadsHtml);
 
 
     })

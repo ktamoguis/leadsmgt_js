@@ -7,7 +7,7 @@ class Lead < ApplicationRecord
   validates :booked_loans, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def next(lead_id, agent_id)
-    binding.pry
+    #binding.pry
     nextlead = Lead.where("id > ?",lead_id).where("agent_id =?", agent_id).first
     if nextlead
       nextlead

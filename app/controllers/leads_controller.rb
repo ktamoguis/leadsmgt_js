@@ -58,7 +58,7 @@ class LeadsController < ApplicationController
   end
 
   def next
-    binding.pry
+    #binding.pry
     @lead = Lead.find_by(id: params[:id])
     @next_lead = @lead.next(params[:id], @lead.agent.id)
     render json: @next_lead
