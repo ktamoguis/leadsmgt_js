@@ -28,13 +28,26 @@ function attachListeners() {
       $("#lead_table").html('');
       let newlead = new Lead(lead);
       let leadsHtml = newlead.formatShow();
-      debugger;
+      //debugger;
       $(".js_leads_index").append(leadsHtml);
       //var leadslist = "";
       //var leads = data;
       //leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
     });
   });
+
+  $(document).on("click", ".next_lead", function(e){
+    debugger;
+    var lead = $(this).attr('data-id');
+    debugger;
+
+    $.get("/leads/" + lead + "/next", function(lead){
+      console.log(lead)
+      debugger;
+
+
+    })
+  })
   //$(".show_link").on("click", (e)=> showLead(e));
   //$(".js-index").on("click", (e)=> leadsIndex(e));
 }
@@ -88,6 +101,14 @@ function showLead (e) {
   var lead = $(this).attr('data-id');
   //var leadid = parseInt($(".show_link").attr("data-id"));
   debugger;
+  //$.ajax({
+  //  method: 'get',
+  //  url: '/leads/'
+  //  success: function(data){
+  //    console.log(data)
+  //  }
+//})
+
   $.get("/leads/" + lead + ".json", function(lead) {
     //debugger;
     //var lead = data;
@@ -124,7 +145,7 @@ Lead.prototype.formatShow = function(){
     <h4>${this.status}</h4>
     <h4>${this.booked_loans}</h4>
     <h4>${this.industry.name}</h4>
-    <button class="next_lead">Next<button>
+    <button class="next_lead" data-id="${this.id}">Next</button>
   `
   return postHtml
 }
