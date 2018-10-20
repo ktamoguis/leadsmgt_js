@@ -44,7 +44,7 @@ class LeadsController < ApplicationController
     if Lead.find_by(id: params[:id])
       @lead = Lead.find_by(id: params[:id])
       @agent = @lead.agent
-      
+      @owners = @lead.owners
     end
     @leads = current_user.leads
     @lead_ids = []
