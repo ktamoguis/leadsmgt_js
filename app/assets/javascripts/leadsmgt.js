@@ -156,6 +156,13 @@ Lead.prototype.formatShow = function(){
   return postHtml
 }
 
+//form
+//1. hijack sumbit event of our form
+//2. take form data and send it to the server as a ajax post
+//3. how are we going to know the url of that post
+//4. need actually take the data from AJAX post request and create the corresponding comments
+//5. send back html/json/js of the comment that was added and inject that comment into the comment OL on the document
+
 
 
 //<td><a href="/agents/${this.agent.id}/leads/${this.id}" class="show_lead">${this.name}</a></td>

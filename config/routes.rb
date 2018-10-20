@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :owners
   get '/' => 'sessions#welcome'
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
