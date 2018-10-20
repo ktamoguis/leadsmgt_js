@@ -38,13 +38,15 @@ class LeadsController < ApplicationController
   end
 
   def show
-    binding.pry
+    #binding.pry
 
     control_check
     if Lead.find_by(id: params[:id])
       @lead = Lead.find_by(id: params[:id])
       @agent = @lead.agent
       @owners = @lead.owners
+      #@owner = @lead.owners.build
+      @owner = Owner.new
     end
     @leads = current_user.leads
     @lead_ids = []

@@ -4,4 +4,8 @@ class OwnersController < ApplicationController
     binding.pry
     @owner = Owner.new()
   end
+
+  def create
+    binding.pry
+  end
 end

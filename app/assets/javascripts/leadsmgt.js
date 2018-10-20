@@ -11,7 +11,7 @@ function attachListeners() {
   //$('#previous').on('click', () => showPreviousGames());
   //$('#save').on('click', ()=> saveGame());
   //$('#clear').on('click', ()=> clearGame());
-  $(".js-next").on("click", (e)=> nextLead(e));
+  //$(".js-next").on("click", (e)=> nextLead(e));
   $(".leads_index").on("click", (e)=> leadsIndex(e));
   //$(document).on("click", ".show_link", (e)=>showLead(e));
   $(document).on("click", ".show_link", function(e){

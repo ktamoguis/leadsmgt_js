@@ -25,6 +25,11 @@
     </ol>
   </div>
 
+  <%= form_for(@owner, :url => owners_path(@lead)) do |f| %>
+    <%= f.text_field :name %><br>
+    <p><%= f.submit %></p>
+  <% end %>
+
   <div class ="row">
 
     <p><%= form_tag edit_lead_path(@lead), method: "get" do %>
