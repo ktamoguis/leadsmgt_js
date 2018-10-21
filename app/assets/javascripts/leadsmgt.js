@@ -1,5 +1,3 @@
-var leadIds = [];
-
 $(document).ready(attachListeners);
 
 function attachListeners() {
@@ -27,28 +25,18 @@ function attachListeners() {
     e.preventDefault();
     var lead = $(this).attr('data-id');
     $.get("/leads/" + lead + ".json", function(lead) {
-      //debugger;
-      //var lead = data;
-      //console.log(data);
-      //debugger;
       $(".js_leads_index").html('');
       $("#lead_table").html('');
       let newlead = new Lead(lead);
       let leadsHtml = newlead.formatShow();
       $(".js_leads_index").append(leadsHtml);
-      //var leadslist = "";
-      //var leads = data;
-      //leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
     });
   });
 
   $(document).on("click", ".next_lead", function(e){
-    //debugger;
     var lead = $(this).attr('data-id');
-    //debugger;
-
     $.get("/leads/" + lead + "/next", function(lead){
-      console.log(lead)
+      //console.log(lead)
       $(".js_leads_index").html('');
       $("#lead_table").html('');
       let newlead = new Lead(lead);
@@ -56,8 +44,7 @@ function attachListeners() {
       $(".js_leads_index").append(leadsHtml);
     })
   })
-  //$(".show_link").on("click", (e)=> showLead(e));
-  //$(".js-index").on("click", (e)=> leadsIndex(e));
+
 }
 
 
@@ -70,8 +57,6 @@ function leadsIndex (e) {
     $("#lead_table").html('');
     var leadslist = "";
     var leads = data;
-    //leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
-    //debugger;
 
     let tableHtml = `
       <th>Lead Name</th>
@@ -81,12 +66,9 @@ function leadsIndex (e) {
     `
 
     $("#lead_table").append(tableHtml)
-
     leads.forEach(function(lead){
-
       let newlead = new Lead(lead);
       let leadsHtml = newlead.formatIndex();
-
       $("#lead_table").append(leadsHtml);
 
       //$(".js_leads_index").append(leadsHtml);
@@ -107,31 +89,14 @@ function Lead(lead){
 function showLead (e) {
   e.preventDefault();
   var lead = $(this).attr('data-id');
-  //var leadid = parseInt($(".show_link").attr("data-id"));
-  //debugger;
-  //$.ajax({
-  //  method: 'get',
-  //  url: '/leads/'
-  //  success: function(data){
-  //    console.log(data)
-  //  }
-//})
-
   $.get("/leads/" + lead + ".json", function(lead) {
-    //debugger;
-    //var lead = data;
-    //console.log(lead);
     $(".js_leads_index").html('');
     $("#lead_table").html('');
     let newlead = new Lead(lead);
     let leadsHtml = newlead.formatShow();
     debugger;
     $(".js_leads_index").append(leadsHtml);
-    //var leadslist = "";
-    //var leads = data;
-    //leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
   });
-  //debugger;
 
 }
 
@@ -167,9 +132,6 @@ Lead.prototype.formatShow = function(){
 //4. need actually take the data from AJAX post request and create the corresponding comments
 //5. send back html/json/js of the comment that was added and inject that comment into the comment OL on the document
 
-
-//<td><a href="/agents/${this.agent.id}/leads/${this.id}" class="show_lead">${this.name}</a></td>
-//<td><a href="/leads/${this.id}" class="show_lead">${this.name}</a></td>
 
 function nextLead(){
   debugger;
