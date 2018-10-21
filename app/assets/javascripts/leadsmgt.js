@@ -2,9 +2,9 @@ $(document).ready(attachListeners);
 
 function attachListeners() {
   $(".leads_index").on("click", (e)=> leadsIndex(e));
-  $("#new_owner").on("submit", function(e){
+  $("#new_owner").on("click", function(e){
     e.preventDefault();
-    debugger;
+    //debugger;
     var url = this.action
     console.log(url);
     $.ajax({
@@ -12,13 +12,12 @@ function attachListeners() {
       url: this.action,
       data: $(this).serialize(),
       success: function(response){
+        debugger;
         $("#owner_name").val("")
         var $ol = $("div.owners ol")
         $ol.append(response)
-
       }
     })
-
   })
 
   $(document).on("click", ".show_link", function(e){
@@ -115,6 +114,7 @@ Lead.prototype.formatIndex = function(){
 Lead.prototype.formatShow = function(){
   let postHtml = `
     <h4>Name: ${this.name}</h4>
+    <h4>Lead Id: ${this.id}</h4>
     <h4>Status: ${this.status}</h4>
     <h4>Booked Loans: ${this.booked_loans}</h4>
     <h4>Industry: ${this.industry.name}</h4>
@@ -131,10 +131,3 @@ Lead.prototype.formatShow = function(){
 //3. how are we going to know the url of that post
 //4. need actually take the data from AJAX post request and create the corresponding comments
 //5. send back html/json/js of the comment that was added and inject that comment into the comment OL on the document
-
-
-function nextLead(){
-  debugger;
-  let id = $(this).attr()
-  fetch(`leads/${id}/next`)
-}
