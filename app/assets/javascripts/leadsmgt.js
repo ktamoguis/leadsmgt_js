@@ -3,14 +3,12 @@ var leadIds = [];
 $(document).ready(attachListeners);
 
 function attachListeners() {
-  //$(".js-next").on("click", (e)=> nextLead(e));
   $(".leads_index").on("click", (e)=> leadsIndex(e));
   $("#new_owner").on("submit", function(e){
     e.preventDefault();
     debugger;
     var url = this.action
     console.log(url);
-    //alert("You clicked me")
     $.ajax({
       type: 'post',
       url: this.action,
@@ -20,13 +18,11 @@ function attachListeners() {
         var $ol = $("div.owners ol")
         $ol.append(response)
 
-        //debugger;
-
       }
     })
-    //console.log("You clicked me")
+
   })
-  //$(document).on("click", ".show_link", (e)=>showLead(e));
+
   $(document).on("click", ".show_link", function(e){
     e.preventDefault();
     //debugger;
@@ -116,7 +112,7 @@ function showLead (e) {
   e.preventDefault();
   var lead = $(this).attr('data-id');
   //var leadid = parseInt($(".show_link").attr("data-id"));
-  debugger;
+  //debugger;
   //$.ajax({
   //  method: 'get',
   //  url: '/leads/'
@@ -177,47 +173,8 @@ Lead.prototype.formatShow = function(){
 //<td><a href="/agents/${this.agent.id}/leads/${this.id}" class="show_lead">${this.name}</a></td>
 //<td><a href="/leads/${this.id}" class="show_lead">${this.name}</a></td>
 
-function leadsIndex_orig (e) {
-  e.preventDefault();
-  console.log("hello there");
-  debugger;
-  $.get("/leads.json", function(data) {
-    var leadslist = "";
-    var leads = data;
-    //leadslist = "Lead Name" + ' ' + "Lead Status" + ' ' + "Booked Loans" + '</br>'
-    debugger;
-    leads.forEach(function(lead){
-      leadslist += lead["name"] + ' ' + lead["status"] + ' ' + lead["booked_loans"] + '</br>'
-      $("#leads").html(leadslist);
-    });
-  });
-};
-
 function nextLead(){
   debugger;
   let id = $(this).attr()
   fetch(`leads/${id}/next`)
-}
-
-
-function nextLead2(){
-  //var leadIds = []
-  //debugger;
-  //leadIds = parseInt($(".js-next").attr("data-id"));
-  var leadIds = $(".js-next").attr("lead-ids")
-  var leadId = $(".js-next").attr("lead-id")
-  var objleadId = JSON.parse(leadId)
-  var objleadIds = JSON.parse(leadIds)
-  var nextIndex = objleadIds.indexOf(objleadId) + 1
-  var nextleadId = objleadIds[nextIndex]
-  var leadName = "";
-  //debugger;
-  $.get("/leads/" + nextleadId +".json", function(data) {
-    debugger;
-    leadName += 'Lead Name: ' + data["name"];
-    leadStatus += 'Status: ' + data["status"];
-    $("#leadName").html(leadName)
-    $("#leadStatus").html(leadStatus)
-    $(".js-next").attr("data-id", data["id"]);
-  });
 }
