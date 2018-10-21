@@ -25,9 +25,7 @@ function attachListeners() {
 
   $(document).on("click", ".show_link", function(e){
     e.preventDefault();
-    //debugger;
     var lead = $(this).attr('data-id');
-    //debugger;
     $.get("/leads/" + lead + ".json", function(lead) {
       //debugger;
       //var lead = data;
@@ -51,12 +49,10 @@ function attachListeners() {
 
     $.get("/leads/" + lead + "/next", function(lead){
       console.log(lead)
-      //debugger;
       $(".js_leads_index").html('');
       $("#lead_table").html('');
       let newlead = new Lead(lead);
       let leadsHtml = newlead.formatShow();
-      //debugger;
       $(".js_leads_index").append(leadsHtml);
     })
   })
@@ -153,11 +149,13 @@ Lead.prototype.formatIndex = function(){
 
 Lead.prototype.formatShow = function(){
   let postHtml = `
-    <h3>${this.name}</h3>
-    <h4>${this.status}</h4>
-    <h4>${this.booked_loans}</h4>
-    <h4>${this.industry.name}</h4>
+    <h4>Name: ${this.name}</h4>
+    <h4>Status: ${this.status}</h4>
+    <h4>Booked Loans: ${this.booked_loans}</h4>
+    <h4>Industry: ${this.industry.name}</h4>
+    <p></p>
     <button class="next_lead" data-id="${this.id}">Next</button>
+    <br><br>
   `
   return postHtml
 }
