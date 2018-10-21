@@ -3,32 +3,44 @@ var leadIds = [];
 $(document).ready(attachListeners);
 
 function attachListeners() {
-  //$("td").click(function() {
-  //  if (this.innerHTML === "" && checkWinner() === false ) {
-  //    doTurn(this)
-  //  }
-  //})
-  //$('#previous').on('click', () => showPreviousGames());
-  //$('#save').on('click', ()=> saveGame());
-  //$('#clear').on('click', ()=> clearGame());
   //$(".js-next").on("click", (e)=> nextLead(e));
   $(".leads_index").on("click", (e)=> leadsIndex(e));
+  $("#new_owner").on("submit", function(e){
+    e.preventDefault();
+    debugger;
+    var url = this.action
+    console.log(url);
+    //alert("You clicked me")
+    $.ajax({
+      type: 'post',
+      url: this.action,
+      data: $(this).serialize(),
+      success: function(response){
+        $("#owner_name").val("")
+        var $ol = $("div.owners ol")
+        $ol.append(response)
+
+        //debugger;
+
+      }
+    })
+    //console.log("You clicked me")
+  })
   //$(document).on("click", ".show_link", (e)=>showLead(e));
   $(document).on("click", ".show_link", function(e){
     e.preventDefault();
     //debugger;
     var lead = $(this).attr('data-id');
-    debugger;
+    //debugger;
     $.get("/leads/" + lead + ".json", function(lead) {
       //debugger;
       //var lead = data;
       //console.log(data);
-      debugger;
+      //debugger;
       $(".js_leads_index").html('');
       $("#lead_table").html('');
       let newlead = new Lead(lead);
       let leadsHtml = newlead.formatShow();
-      //debugger;
       $(".js_leads_index").append(leadsHtml);
       //var leadslist = "";
       //var leads = data;
@@ -50,8 +62,6 @@ function attachListeners() {
       let leadsHtml = newlead.formatShow();
       //debugger;
       $(".js_leads_index").append(leadsHtml);
-
-
     })
   })
   //$(".show_link").on("click", (e)=> showLead(e));
@@ -162,7 +172,6 @@ Lead.prototype.formatShow = function(){
 //3. how are we going to know the url of that post
 //4. need actually take the data from AJAX post request and create the corresponding comments
 //5. send back html/json/js of the comment that was added and inject that comment into the comment OL on the document
-
 
 
 //<td><a href="/agents/${this.agent.id}/leads/${this.id}" class="show_lead">${this.name}</a></td>

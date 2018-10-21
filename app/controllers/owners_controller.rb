@@ -6,13 +6,14 @@ class OwnersController < ApplicationController
   end
 
   def create
-    binding.pry
+    #binding.pry
     @agent = current_user
     @lead = Lead.find_by(id: params[:format])
-    binding.pry
+    #binding.pry
     @owner = @lead.owners.build(owners_params)
     if @owner.save
-      redirect_to @lead
+      render 'owners/show', :layout => false
+      #redirect_to @lead
     else
       render agent_lead_path(@agent, @lead)
     end
