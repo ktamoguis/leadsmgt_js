@@ -25,7 +25,9 @@
     </ol>
   </div>
 
-  <%= form_for(@owner, :url => owners_path(@lead)) do |f| %>
+  <!--<%= form_for(@owner, :url => owners_path(@lead)) do |f| %>
+  <% end %>-->
+  <%= form_for(@owner, :url => lead_owners_path(@lead)) do |f| %>
     <%= f.text_field :name %><br>
     <p><%= f.submit %></p>
   <% end %>

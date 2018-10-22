@@ -2,9 +2,11 @@ $(document).ready(attachListeners);
 
 function attachListeners() {
   $(".leads_index").on("click", (e)=> leadsIndex(e));
-  $("#new_owner").on("click", function(e){
+  //$("input[value='Create Owner']").on("click", function(e){
+  $(document).on("submit", "#new_owner_", function(e){
+  //$("#new_owner").on("submit", function(e){
     e.preventDefault();
-    //debugger;
+    debugger;
     var url = this.action
     console.log(url);
     $.ajax({
@@ -12,13 +14,35 @@ function attachListeners() {
       url: this.action,
       data: $(this).serialize(),
       success: function(response){
-        debugger;
+        //debugger;
         $("#owner_name").val("")
         var $ol = $("div.owners ol")
         $ol.append(response)
       }
     })
   })
+
+  $('.new_owner').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      debugger;
+      var url = this.action
+
+      var values = $(this).serialize();
+
+      var posting = $.post(url, values);
+
+      //var posting = $.post('/products', values);
+
+      posting.done(function(data) {
+        //var prod = data;
+        debugger;
+        $("#owner_name").val("")
+        var $ol = $("div.owners ol")
+        $ol.append(data)
+        return false
+      });
+  });
 
   $(document).on("click", ".show_link", function(e){
     e.preventDefault();

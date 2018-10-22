@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     resources :industries, only: [:show]
   end
 
+  resources :leads do
+    resources :owners
+  end
+
   resources :industries
   resources :regions
   resources :leads
