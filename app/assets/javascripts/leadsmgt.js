@@ -137,6 +137,7 @@ Lead.prototype.formatShow = function(){
     <h4>Status: ${this.status}</h4>
     <h4>Booked Loans: ${this.booked_loans}</h4>
     <h4>Industry: ${this.industry.name}</h4>
+    <a href="/leads/${this.id}">Show more</a>
     <p></p>
     <button class="next_lead" data-id="${this.id}">Next</button>
     <br><br>
