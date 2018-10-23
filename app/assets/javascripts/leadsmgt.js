@@ -45,7 +45,8 @@ function attachListeners() {
         $ol.append(`<li>` + data.name  + `</li>`)
         //$ol.append('<li>test<li>')
         //$ol.append('test')
-        return false
+        //return false
+        $( "input[value='Create Owner']" ).prop('disabled',false);
       });
   });
 
