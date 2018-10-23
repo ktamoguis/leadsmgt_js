@@ -1,6 +1,4 @@
 $(document).ready(attachListeners);
-//$(document).on('turbolinks:load', attachListeners);
-
 
 function attachListeners() {
   $(".leads_index").on("click", (e)=> leadsIndex(e));
@@ -25,27 +23,18 @@ function attachListeners() {
   })
 
   $('.new_owner').submit(function(event) {
-      //prevent form from submitting the default way
       event.preventDefault();
       debugger;
       var url = this.action
-
       var values = $(this).serialize();
-
       var posting = $.post(url, values);
 
-      //var posting = $.post('/products', values);
-
       posting.done(function(data) {
-        //var prod = data;
         debugger;
         $("#owner_name").val("")
         var $ol = $("div.owners ol")
         //$ol.append(data)
         $ol.append(`<li>` + data.name  + `</li>`)
-        //$ol.append('<li>test<li>')
-        //$ol.append('test')
-        //return false
         $( "input[value='Create Owner']" ).prop('disabled',false);
       });
   });
