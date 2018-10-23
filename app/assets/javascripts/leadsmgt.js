@@ -1,4 +1,6 @@
 $(document).ready(attachListeners);
+//$(document).on('turbolinks:load', attachListeners);
+
 
 function attachListeners() {
   $(".leads_index").on("click", (e)=> leadsIndex(e));
@@ -39,7 +41,10 @@ function attachListeners() {
         debugger;
         $("#owner_name").val("")
         var $ol = $("div.owners ol")
-        $ol.append(data)
+        //$ol.append(data)
+        $ol.append(`<li>` + data.name  + `</li>`)
+        //$ol.append('<li>test<li>')
+        //$ol.append('test')
         return false
       });
   });

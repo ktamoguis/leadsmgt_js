@@ -42,7 +42,7 @@ class LeadsController < ApplicationController
 
     control_check
     if Lead.find_by(id: params[:id])
-      binding.pry
+      #binding.pry
       @lead = Lead.find_by(id: params[:id])
       @agent = @lead.agent
       @owners = @lead.owners
