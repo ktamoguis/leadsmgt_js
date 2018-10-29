@@ -10,7 +10,9 @@ function attachListeners() {
       let owners = lead.owners
       let ownerNames = []
       owners.forEach(function(owner){
-        ownerNames.push(owner.name);
+        //if (owner.name.substring(0,1) === "H"){
+          ownerNames.push(owner.name);
+        //}
       })
       let sortOwners = ownerNames.sort();
       //$("#ownerName").val('');
@@ -122,7 +124,7 @@ function Lead(lead){
   this.id = lead.id;
   this.name = lead.name;
   this.status = lead.status;
-  this.booked_loans = lead.booked_loans;
+  this.bookedLoans = lead.booked_loans;
   this.agent = lead.agent;
   this.industry = lead.industry;
 }
@@ -147,7 +149,7 @@ Lead.prototype.formatIndex = function(){
     <tr>
       <td><a href="/agents/${this.agent.id}/leads/${this.id}" data-id="${this.id}" class="show_link">${this.name}</a></td>
       <td>${this.status}</td>
-      <td>${this.booked_loans}</td>
+      <td>${this.bookedLoans}</td>
       <td>${this.industry.name}</td>
     </tr>
   `
@@ -159,7 +161,7 @@ Lead.prototype.formatShow = function(){
     <h4>Name: ${this.name}</h4>
     <h4>Lead Id: ${this.id}</h4>
     <h4>Status: ${this.status}</h4>
-    <h4>Booked Loans: ${this.booked_loans}</h4>
+    <h4>Booked Loans: ${this.bookedLoans}</h4>
     <h4>Industry: ${this.industry.name}</h4>
     <a href="/leads/${this.id}">Show more</a>
     <p></p>
