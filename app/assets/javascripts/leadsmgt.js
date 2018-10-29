@@ -24,13 +24,13 @@ function attachListeners() {
 
   $('.new_owner').submit(function(event) {
       event.preventDefault();
-      debugger;
-      var url = this.action
-      var values = $(this).serialize();
-      var posting = $.post(url, values);
+      //debugger;
+      let url = this.action
+      let values = $(this).serialize();
+      let posting = $.post(url, values);
 
       posting.done(function(data) {
-        debugger;
+        //debugger;
         $("#owner_name").val("")
         var $ol = $("div.owners ol")
         //$ol.append(data)
@@ -41,7 +41,7 @@ function attachListeners() {
 
   $(document).on("click", ".show_link", function(e){
     e.preventDefault();
-    var lead = $(this).attr('data-id');
+    const lead = $(this).attr('data-id');
     $.get("/leads/" + lead + ".json", function(lead) {
       $(".js_leads_index").html('');
       $("#lead_table").html('');
@@ -52,7 +52,7 @@ function attachListeners() {
   });
 
   $(document).on("click", ".next_lead", function(e){
-    var lead = $(this).attr('data-id');
+    const lead = $(this).attr('data-id');
     $.get("/leads/" + lead + "/next", function(lead){
       //console.log(lead)
       $(".js_leads_index").html('');
@@ -73,8 +73,8 @@ function leadsIndex (e) {
     //debugger;
     $(".js_leads_index").html('');
     $("#lead_table").html('');
-    var leadslist = "";
-    var leads = data;
+    let leadslist = "";
+    let leads = data;
 
     let tableHtml = `
       <th>Lead Name</th>
