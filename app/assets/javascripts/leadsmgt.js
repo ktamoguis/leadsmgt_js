@@ -2,6 +2,27 @@ $(document).ready(attachListeners);
 
 function attachListeners() {
   $(".leads_index").on("click", (e)=> leadsIndex(e));
+
+  $("#sort").on("click", function(e){
+    e.preventDefault();
+    const url = this.href;
+    $.get(url + ".json", function(lead) {
+      let owners = lead.owners
+      let ownerNames = []
+      owners.forEach(function(owner){
+        ownerNames.push(owner.name);
+      })
+      let sortOwners = ownerNames.sort();
+      //$("#ownerName").val('');
+      $("#ownerlist").empty();
+      sortOwners.forEach(function(owner){
+        let ownerHtml = '<li>' + owner + '</li>'
+        $("#ownerlist2").append(ownerHtml);
+      })
+    });
+
+
+  })
   //$("input[value='Create Owner']").on("click", function(e){
   //$(document).on("submit", "#new_owner_", function(e){
   //$("#new_owner").on("submit", function(e){
@@ -69,7 +90,7 @@ function attachListeners() {
 function leadsIndex (e) {
   e.preventDefault();
   history.pushState(null,null,"leads");
-  $.get("/leads.json", function(data) {
+  $.get("/leads", function(data) {
     //debugger;
     $(".js_leads_index").html('');
     $("#lead_table").html('');
@@ -86,14 +107,19 @@ function leadsIndex (e) {
     $("#lead_table").append(tableHtml)
     leads.forEach(function(lead){
       let newlead = new Lead(lead);
+      //debugger;
       let leadsHtml = newlead.formatIndex();
       $("#lead_table").append(leadsHtml);
 
       //$(".js_leads_index").append(leadsHtml);
       //$("#leads").append(leadsHtml);
     });
-  });
+  },"json");
 };
+
+function Owner(owner){
+  this.name = owner.name;
+}
 
 function Lead(lead){
   this.id = lead.id;
@@ -117,6 +143,13 @@ function Lead(lead){
 //  });
 
 //}
+
+Owner.prototype.formatList = function(){
+  let postHtml = `
+      <li>${this.name}</li>
+  `
+  return postHtml
+}
 
 Lead.prototype.formatIndex = function(){
   let postHtml = `

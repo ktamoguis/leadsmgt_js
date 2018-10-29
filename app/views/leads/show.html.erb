@@ -18,10 +18,12 @@
 
   <div class="owners">
     <h4>Owners:</h4>
-    <ol>
+    <ol id="ownerlist">
       <% @owners.each do |owner| %>
-      <li><%= owner.name %></li>
+      <li id="ownerName"><%= owner.name %></li>
       <% end %>
+    </ol>
+    <ol id="ownerlist2">
     </ol>
   </div>
 
@@ -31,6 +33,10 @@
     <%= f.text_field :name %><br>
     <p><%= f.submit %></p>
   <% end %>
+
+  <div class ="sort">
+    <a id="sort" href= "<%=lead_path(@lead) %>">Sort</a>
+  </div>
 
   <div class ="row">
 
