@@ -117,9 +117,6 @@ function leadsIndex (e) {
   },"json");
 };
 
-function Owner(owner){
-  this.name = owner.name;
-}
 
 function Lead(lead){
   this.id = lead.id;
@@ -144,12 +141,6 @@ function Lead(lead){
 
 //}
 
-Owner.prototype.formatList = function(){
-  let postHtml = `
-      <li>${this.name}</li>
-  `
-  return postHtml
-}
 
 Lead.prototype.formatIndex = function(){
   let postHtml = `
