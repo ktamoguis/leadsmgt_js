@@ -3,24 +3,24 @@ $(document).ready(attachListeners);
 function attachListeners() {
   $(".leads_index").on("click", (e)=> leadsIndex(e));
   //$("input[value='Create Owner']").on("click", function(e){
-  $(document).on("submit", "#new_owner_", function(e){
+  //$(document).on("submit", "#new_owner_", function(e){
   //$("#new_owner").on("submit", function(e){
-    e.preventDefault();
-    debugger;
-    var url = this.action
-    console.log(url);
-    $.ajax({
-      type: 'post',
-      url: this.action,
-      data: $(this).serialize(),
-      success: function(response){
+  //  e.preventDefault();
+    //debugger;
+  //  let url = this.action
+  //  console.log(url);
+  //  $.ajax({
+  //    type: 'post',
+  //    url: this.action,
+  //    data: $(this).serialize(),
+  //  success: function(response){
         //debugger;
-        $("#owner_name").val("")
-        var $ol = $("div.owners ol")
-        $ol.append(response)
-      }
-    })
-  })
+  //      $("#owner_name").val("")
+  //      let $ol = $("div.owners ol")
+  //      $ol.append(response)
+  //    }
+  //  })
+  //})
 
   $('.new_owner').submit(function(event) {
       event.preventDefault();
@@ -32,7 +32,7 @@ function attachListeners() {
       posting.done(function(data) {
         //debugger;
         $("#owner_name").val("")
-        var $ol = $("div.owners ol")
+        let $ol = $("div.owners ol")
         //$ol.append(data)
         $ol.append(`<li>` + data.name  + `</li>`)
         $( "input[value='Create Owner']" ).prop('disabled',false);
@@ -104,19 +104,19 @@ function Lead(lead){
   this.industry = lead.industry;
 }
 
-function showLead (e) {
-  e.preventDefault();
-  var lead = $(this).attr('data-id');
-  $.get("/leads/" + lead + ".json", function(lead) {
-    $(".js_leads_index").html('');
-    $("#lead_table").html('');
-    let newlead = new Lead(lead);
-    let leadsHtml = newlead.formatShow();
-    debugger;
-    $(".js_leads_index").append(leadsHtml);
-  });
+//function showLead (e) {
+//  e.preventDefault();
+//  const lead = $(this).attr('data-id');
+//  $.get("/leads/" + lead + ".json", function(lead) {
+//    $(".js_leads_index").html('');
+//    $("#lead_table").html('');
+//    let newlead = new Lead(lead);
+//    let leadsHtml = newlead.formatShow();
+    //debugger;
+//    $(".js_leads_index").append(leadsHtml);
+//  });
 
-}
+//}
 
 Lead.prototype.formatIndex = function(){
   let postHtml = `
