@@ -1,6 +1,5 @@
 $(document).ready(attachListeners);
 
-//hello
 
 function attachListeners() {
   $(".leads_index").on("click", (e)=> leadsIndex(e));
@@ -129,6 +128,17 @@ function Lead(lead){
   this.agent = lead.agent;
   this.industry = lead.industry;
 }
+
+//class Lead {
+//  constructor(lead){
+//    this.id = lead.id;
+//    this.name = lead.name;
+//    this.status = lead.status;
+//    this.bookedLoans = lead.booked_loans;
+//    this.agent = lead.agent;
+//    this.industry = lead.industry;
+//  }
+//}
 
 //function showLead (e) {
 //  e.preventDefault();
