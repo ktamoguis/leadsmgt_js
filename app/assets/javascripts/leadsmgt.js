@@ -1,5 +1,7 @@
 $(document).ready(attachListeners);
 
+//hello
+
 function attachListeners() {
   $(".leads_index").on("click", (e)=> leadsIndex(e));
 
@@ -15,7 +17,6 @@ function attachListeners() {
         //}
       })
       let sortOwners = ownerNames.sort();
-      //$("#ownerName").val('');
       $("#ownerlist").empty();
       sortOwners.forEach(function(owner){
         let ownerHtml = '<li>' + owner + '</li>'
