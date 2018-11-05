@@ -6,19 +6,36 @@ function attachListeners() {
 
   $("#sort").on("click", function(e){
     e.preventDefault();
+    $("#ownerlist").empty();
+    $("#ownerlist2").empty();
+    //$("#ownerList2").innerHTML="";
+
     const url = this.href;
     $.get(url + ".json", function(lead) {
       let owners = lead.owners
-      let ownerNames = []
-      owners.forEach(function(owner){
+      //let ownerNames = []
+      //owners.forEach(function(owner){
         //if (owner.name.substring(0,1) === "H"){
-          ownerNames.push(owner.name);
+      //    ownerNames.push(owner.name);
         //}
-      })
-      let sortOwners = ownerNames.sort();
-      $("#ownerlist").empty();
-      sortOwners.forEach(function(owner){
-        let ownerHtml = '<li>' + owner + '</li>'
+      //})
+      //let sortOwners = ownerNames.sort();
+      lead.owners.sort(function(a, b) {
+        var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+
+        // names must be equal
+        return 0;
+      });
+
+      lead.owners.forEach(function(owner){
+        let ownerHtml = '<li id="indOwner">' + owner.name + '</li>'
         $("#ownerlist2").append(ownerHtml);
       })
     });
@@ -88,6 +105,11 @@ function attachListeners() {
 
 }
 
+function clearList() {
+    var list = document.getElementById("#indOwner");
+    list.removeChild(list.childNodes[0]);
+}
+
 
 function leadsIndex (e) {
   e.preventDefault();
@@ -120,25 +142,25 @@ function leadsIndex (e) {
 };
 
 
-function Lead(lead){
-  this.id = lead.id;
-  this.name = lead.name;
-  this.status = lead.status;
-  this.bookedLoans = lead.booked_loans;
-  this.agent = lead.agent;
-  this.industry = lead.industry;
-}
-
-//class Lead {
-//  constructor(lead){
-//    this.id = lead.id;
-//    this.name = lead.name;
-//    this.status = lead.status;
-//    this.bookedLoans = lead.booked_loans;
-//    this.agent = lead.agent;
-//    this.industry = lead.industry;
-//  }
+//function Lead(lead){
+//  this.id = lead.id;
+//  this.name = lead.name;
+//  this.status = lead.status;
+//  this.bookedLoans = lead.booked_loans;
+//  this.agent = lead.agent;
+//  this.industry = lead.industry;
 //}
+
+class Lead {
+  constructor(lead){
+    this.id = lead.id;
+    this.name = lead.name;
+    this.status = lead.status;
+    this.bookedLoans = lead.booked_loans;
+    this.agent = lead.agent;
+    this.industry = lead.industry;
+  }
+}
 
 //function showLead (e) {
 //  e.preventDefault();
